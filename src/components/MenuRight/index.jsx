@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CodigoCondutaABVTEX from "../../assets/doc/Código-de-conduta-ABVTEX.pdf";
-import CodigoCondutaWerner from "../../assets/doc/etica.pdf";
 import { AuthContext } from "../../context/auth";
 import Tutorial from "../Tutorial";
 import {
@@ -14,7 +13,7 @@ return (
     <MenuRightContainer>
     <Ul>
     <Option>
-        <Link className="tabNavigation" tabIndex={0} to={CodigoCondutaWerner} target="_blank" >Código de Conduta Werner</Link>
+        <Link className="tabNavigation" tabIndex={0}  target="_blank" >Código de Conduta Werner</Link>
     </Option>
     <Option>
         <Link className="tabNavigation" tabIndex={0} to="/ramal">Ramais</Link>
