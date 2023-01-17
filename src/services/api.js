@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://169.57.150.59:8025",
+  baseURL: "https://intranet-werner-production.up.railway.app",
 });
 export const createUser = async (email, password) => {
   return api.post("/auth/registro")
