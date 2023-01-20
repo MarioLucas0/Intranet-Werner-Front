@@ -36,6 +36,14 @@
     <script>
       new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>   
+    <script>
+var requestIp = require('request-ip');
+
+// inside middleware handler
+var ip = requestIp.getClientIp(req); 
+
+console.log(ip); // will return the IP address of the visitor
+</script>
 
 
   </body>
