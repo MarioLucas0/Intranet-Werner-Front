@@ -83,7 +83,7 @@ export const CreateAccount = () =>{
     return result;
   }
 
-  const mailBody = {email: "", codigo: codigoEspecial};
+  const mailBody = {email: "mariolucas.2000@outlook.com", codigo: codigoEspecial};
   const sendMail = async () => {
     const response = api.post("/email/createAccount", mailBody).then(res => console.log("Sending mail...", res), ).catch(err => console.log(err))
         
