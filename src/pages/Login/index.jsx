@@ -19,8 +19,8 @@ export const Login = () =>{
 const {login} = useContext(AuthContext)
 
   const navigate = useNavigate();
-  const [email,setEmail] = useState("")
-  const [senha,setSenha] = useState("")
+  const [email,setEmail] = useState("lucas123@gmail.com")
+  const [senha,setSenha] = useState("123456")
   const [isLoading, setIsLoading] = useState(true)
   const notify = () => toast("");
   
@@ -30,8 +30,8 @@ const {login} = useContext(AuthContext)
 
   const handlejwt =  () => {
     const credentials = {
-      "email": 'lucas123@gmail.com',
-      "password": '123456'
+      "email": email,
+      "password": senha
       }
     api.post('/auth/login', credentials).then((response) => {
             login(email,senha)
