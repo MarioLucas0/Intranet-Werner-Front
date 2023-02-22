@@ -167,10 +167,6 @@ export const TextTitle = styled.p`
 
 }
 
-
-  
-
-    
 `
 
 export const TextCheck = styled.p`

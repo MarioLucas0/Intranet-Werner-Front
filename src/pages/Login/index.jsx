@@ -1,13 +1,13 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import md5 from "md5";
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { userSchema } from "../../components/Validation/UserValidation";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import gifloader from "../../assets/img/gifloader.gif";
 import IconLogin from "../../assets/img/iconLogin.png";
 import logo from "../../assets/img/logo.svg";
-import { toast } from 'react-toastify';
+import { userSchema } from "../../components/Validation/UserValidation";
 import { AuthContext } from "../../context/auth";
 import { api } from "../../services/api";
 import {
@@ -30,8 +30,8 @@ const {login} = useContext(AuthContext)
 
   const handlejwt =  () => {
     const credentials = {
-      "email": email,
-      "password": senha
+      "email": 'lucas123@gmail.com',
+      "password": '123456'
       }
     api.post('/auth/login', credentials).then((response) => {
             login(email,senha)
