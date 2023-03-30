@@ -1,17 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import editar from "../../assets/img/botao-editar.png";
 import gifLoader from "../../assets/img/gifloader.gif";
 import Pesquisa from "../../assets/img/Pesquisa.svg";
 import { SlideCarousel } from "../../components/Carousel";
 import { MenuLeft } from "../../components/MenuLeft";
 import { MenuRight } from "../../components/MenuRight";
+import ModalAviso from "../../components/modalNotification";
 import { AuthContext } from "../../context/auth";
 import { getPosts } from "../../services/api";
-import { formatDate } from "../../utils/dateFormat";
 
 import {
-  ButtonLimpar, DivContainer, DivContentPost, DivContext, DivInput, DivInputs, DivLoader, Post, PostTitle, Section, TextData, TextDescricao
+  ButtonLimpar, DivContainer, DivContentPost, DivContext, DivInput, DivInputs, DivLoader, Post, PostTitle, Section, TextDescricao
 } from "./style";
 
 export const Home = () =>{
@@ -19,6 +18,7 @@ export const Home = () =>{
   const [busca, setBusca] = useState("");
   const {setPostagem,authenticated,setDarkMode,darkMode} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false)
 
 
   useEffect(() => {
@@ -56,6 +56,9 @@ export const Home = () =>{
 
   const postagemFiltrados = posts?.filter((post) => post.titulo.toUpperCase().includes(busca.toUpperCase())) 
   
+  useEffect(() => {
+    setOpenModal(true)
+  })
   return (
 
     <Section>
@@ -77,19 +80,8 @@ export const Home = () =>{
           {isLoading ? loaderPostagem() : postagemFiltrados?.sort((a, b) => b.idPost - a.idPost).map((post) => (
             
             <Post key={post?.idPost}>
-              <TextData>
-                {"Postado em "+ formatDate(post?.dataPostagem)}
-                {authenticated ?  
-                
-                <Link to={`/arearh/postagem/editar/${post?.idPost}`} >
-                <img src={editar} alt="Botao Editar Postagem" />
-                </Link>
-                : ""}
-
-              </TextData>
               <PostTitle>{post?.titulo}</PostTitle>
               <DivContentPost>
-                <img src={post?.imagem === null || post?.imagem === "" ? post?.imagemUrl : "data:application/image;base64," + post?.imagem} alt="" />
               <TextDescricao>{
                   decodeURIComponent(escape(window.atob(post?.descricao).replace(/_/g, " ").replace(/\|/g, '"').replace(/\//g, "'"))).substring(0,320)  + "..."}
               </TextDescricao>
@@ -102,6 +94,10 @@ export const Home = () =>{
         </DivContext>
       </DivContainer>
       <MenuRight />
+  
+      <ModalAviso isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
+        Conteúdo do modal
+      </ModalAviso>
     </Section>
 
   );
