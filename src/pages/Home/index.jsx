@@ -18,7 +18,7 @@ export const Home = () =>{
   const [busca, setBusca] = useState("");
   const {setPostagem,authenticated,setDarkMode,darkMode} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(true);
-  const [openModal, setOpenModal] = useState(false)
+
 
 
   useEffect(() => {
@@ -56,9 +56,7 @@ export const Home = () =>{
 
   const postagemFiltrados = posts?.filter((post) => post.titulo.toUpperCase().includes(busca.toUpperCase())) 
   
-  useEffect(() => {
-    setOpenModal(true)
-  })
+
   return (
 
     <Section>
@@ -95,9 +93,7 @@ export const Home = () =>{
       </DivContainer>
       <MenuRight />
   
-      <ModalAviso isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}>
-        Conteúdo do modal
-      </ModalAviso>
+     
     </Section>
 
   );
