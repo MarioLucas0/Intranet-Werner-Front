@@ -80,7 +80,7 @@ export const Home = () =>{
             <Post key={post?.idPost}>
               <PostTitle>{post?.titulo}</PostTitle>
               <DivContentPost>
-            <img src={postagem?.imagem === null || postagem?.imagem === "" ? postagem?.imagemUrl : "data:application/image;base64," + postagem?.imagem} alt="" />
+            <img src={post?.imagem === null || post?.imagem === "" ? post?.imagemUrl : "data:application/image;base64," + post?.imagem} alt="" />
               <TextDescricao>{
                   decodeURIComponent(escape(window.atob(post?.descricao).replace(/_/g, " ").replace(/\|/g, '"').replace(/\//g, "'"))).substring(0,320)  + "..."}
               </TextDescricao>
